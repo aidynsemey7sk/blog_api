@@ -23,5 +23,8 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    path('accounts/logout/', LogoutView.as_view(next_page='/'), name='logout'),
+
+    path('api/v1', include('api.urls')),
 
 ]
