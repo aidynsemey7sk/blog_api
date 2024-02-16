@@ -13,25 +13,26 @@
         <aside class="actions">
             {% if user.is_authenticated %}
             <a class="btn btn-secondary" href="{% url 'post_edit' post_slug=post.slug %}">
-              {% include './icons/pencil-fill.svg' %}
+                Редактировать
             </a>
             {% endif %}
         </aside>
             <br>
             <br>
             <hr>
-            {{post.pk}} {{post.slug}}
-            <a class="btn btn-default" href="{% url 'add_comment_to_post' post_slug=post.slug %}">Add comment</a>
+            <a class="btn btn-secondary" href="{% url 'add_comment_to_post' post_slug=post.slug %}">Add comment</a>
+            <br>
             {% for comment in post.comments.all %}
+            <br>
                 {% if user.is_authenticated or comment.approved_comment %}
                 <div class="comment">
                     <div class="date">
                         {{ comment.created_date }}
                         {% if not comment.approved_comment %}
-                            <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
-
+                            <a class="btn btn-secondary" href="{% url 'comment_remove' pk=comment.pk %}">
+                                удалить
                             </a>
-                            <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+                            <a class="btn btn-secondary" href="{% url 'comment_approve' pk=comment.pk %}">
                                опубликовать
                             </a>
                         {% endif %}
@@ -44,5 +45,5 @@
                     <p>No comments here yet :(</p>
                 {% endfor %}
     </article>
-<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span>Удалить пост</span></a>
+<a class="btn btn-secondary" href="{% url 'post_remove' pk=post.pk %}"><span>Удалить пост</span></a>
 {% endblock %}

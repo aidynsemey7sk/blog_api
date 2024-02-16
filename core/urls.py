@@ -18,6 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 
+from api.views import ListPost, PostViewSet
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('posts', PostViewSet, basename='post')
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
@@ -25,6 +32,6 @@ urlpatterns = [
     path('accounts/logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('accounts/logout/', LogoutView.as_view(next_page='/'), name='logout'),
 
-    path('api/v1', include('api.urls')),
+    path('api/v1/', include(router.urls)),
 
 ]
