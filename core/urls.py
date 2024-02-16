@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 
-from api.views import ListPost, PostViewSet
+from api.views import PostViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
